@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>NIR LIB Data Download</title>
+<style type="text/css">
+body {background: #ffffff; margin: 0; padding: 0; font-size: 12px;
+    color: #000000; font-family: Verdana, sans-serif, arial, helvetica;
+    line-height: 1.4}
+.ftable {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+width:100%;
+border-collapse:collapse;
+}
+.ftable td, .ftable th {
+font-size:1.1em;
+border:1px solid #99ffff;
+padding:3px 7px 2px 7px;
+}
+.ftable th{
+font-size:1.4em;
+text-align:left;
+padding-top:5px;
+padding-bottom:4px;
+background-color:cyan;
+color:#ffffff;
+}
+.ftable tr.alt td{
+color:#000000;
+background-color:#EAF2D3;
+
+}
+.dbutton{
+ background: cyan;
+  border: 2px solid #eee;
+  height: 38px;
+  width: 125px;
+  margin: 50px 0 0 50px;
+  overflow: hidden;
+ 
+  text-align: center;
+  line-height: 38px;
+  display: block;
+   font: 18px/1.5 Helvetica, Arial, sans-serif;
+  color: #fff;
+  
+}
+</style>
+
+<script type="text/javascript" src="/nirlib/userform.js" >
+</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+</head>
+<body>
+
+
+<form method="post" name="sform" id="sid">
+<table border="0" cellspacing="0" cellpadding ="7">
+<tr><td width="20%" align="right">RA(hh:mm:ss)</td>
+<td width="20%" ><input type="text" id="ra" name="ra" value="0:0:0.0"/></td>
+<td width="20%" align="right">DEC(hh:mm:ss)</td>
+<td width="20%"><input type="text" id="dec" name="dec" value="0:0:0.0"/></td>
+<td align="right" width="20%"><input type="button" value="Search" class="dbutton" id="sbutton" onClick="raDecHandler()"/></td>
+</tr>
+</table>
+</form>
+<div id="hello"></div>
+<form method="post" name="uform" id="uid">
+
+<br/><br/><br/>
+<table border="0" cellspacing="0" cellpadding="7">
+<tr><td width = "40%" align= "center" rowspan="2"><h2>J-Band</h2></td>
+<td width = "*" colspan="3">Enter wavelength range between 11300 &amp; 13100(angstrom):</td>
+</tr>
+<tr>
+<td><input type="text" id="jstart" name="jsname" value="11300.0" onBlur="validate('jstart',11300,13100)"></td>
+<td>to</td>
+<td><input type="text" id="jend" value="13100.0" onBlur="validate('jend',11300,13100)"></td>
+</tr>
+</table>
+<center>
+<table   border="2" cellspacing="0" cellpadding="5" class="ftable">
+<tr>
+<th>O type</th>
+<th>B type</th>
+<th>A type</th>
+<th>F type</th>
+<th>G type</th>
+<th>K type</th>
+<th>M type</th>
+</tr>
+<tr>
+<td><input type="checkbox" id="j1948" value= "1948j.dat" name="jbox"/>HR 1948</td>
+<td><input type="checkbox" id="j1239" value= "1239j.dat" name="jbox"/>HR 1239</td>
+<td><input type="checkbox" id="j403" value= "403j.dat" name="jbox"/>HR 403</td>
+<td><input type="checkbox" id="j382" value= "382j.dat" name="jbox"/>HR 382</td>
+<td><input type="checkbox" id="j483" value= "483j.dat" name="jbox"/>HR 483</td>
+<td><input type="checkbox" id="j539" value= "539j.dat" name="jbox"/>HR 539</td>
+<td><input type="checkbox" id="j1155" value= "1155j.dat" name="jbox"/>HR 1155</td>
+</tr>
+
+<tr>
+<td><input type="checkbox" id="j2456" value= "2456j.dat" name="jbox"/>HR 2456</td>
+<td><input type="checkbox" id="j1552" value= "1552j.dat" name="jbox"/>HR 1552</td>
+<td><input type="checkbox" id="j2421" value= "2421j.dat" name="jbox"/>HR 2421</td>
+<td><input type="checkbox" id="j1543" value= "1543j.dat" name="jbox"/>HR 1543</td>
+<td><input type="checkbox" id="j2007" value= "2007j.dat" name="jbox"/>HR 2007</td>
+<td><input type="checkbox" id="j1318" value= "1318j.dat" name="jbox"/>HR 1318</td>
+<td><input type="checkbox" id="j2508" value= "2508j.dat" name="jbox"/>HR 2508</td>
+</tr>
+
+
+<tr>
+<td><input type="checkbox" id="j3165" value= "3165j.dat" name="jbox"/>HR 3165</td>
+<td><input type="checkbox" id="j1790" value= "1790j.dat" name="jbox"/>HR 1790</td>
+<td><input type="checkbox" id="j2763" value= "2763j.dat" name="jbox"/>HR 2763</td>
+<td><input type="checkbox" id="j1865" value= "1865j.dat" name="jbox"/>HR 1865</td>
+<td><input type="checkbox" id="j2473" value= "2473j.dat" name="jbox"/>HR 2473</td>
+<td><input type="checkbox" id="j2227" value= "2227j.dat" name="jbox"/>HR 2227</td>
+<td><input type="checkbox" id="j3718" value= "3718j.dat" name="jbox"/>HR 3718</td>
+</tr>
+
+<tr>
+<td><input type="checkbox" id="j6175" value= "6175j.dat" name="jbox"/>HR 6175</td>
+<td><input type="checkbox" id="j1791" value= "1791j.dat" name="jbox"/>HR 1791</td>
+<td><input type="checkbox" id="j2902" value= "2902j.dat" name="jbox"/>HR 2902</td>
+<td><input type="checkbox" id="j1983" value= "1983j.dat" name="jbox"/>HR 1983</td>
+<td><input type="checkbox" id="j2970" value= "2970j.dat" name="jbox"/>HR 2970</td>
+<td><input type="checkbox" id="j2701" value= "2701j.dat" name="jbox"/>HR 2701</td>
+<td><input type="checkbox" id="j3882" value= "3882j.dat" name="jbox"/>HR 3882</td>
+</tr>
+</table>
+</center>
+
+<table border="0" cellspacing="0" cellpadding="7">
+<tr><td width = "40%" align= "center" rowspan="2"><h2>K-Band</h2></td>
+<td width = "*" colspan="3">Enter wavelength range between 20800 &amp; 22400(angstrom):</td>
+</tr>
+<tr>
+<td><input type="text" id="kstart" value="20800.0" onBlur="validate('kstart',20800,22400)"></td>
+<td>to</td>
+<td><input type="text" id="kend" value="22400.0" onBlur="validate('kend',20800,22400)"></td>
+</tr>
+</table>
+<center>
+<table border="2" cellspacing="0" cellpadding="5" class="ftable">
+<tr>
+<th>O type</th>
+<th>B type</th>
+<th>A type</th>
+<th>F type</th>
+<th>G type</th>
+<th>K type</th>
+<th>M type</th>
+</tr>
+<tr>
+<td><input type="checkbox" id="k1948" value= "1948k.dat" name="kbox"/>HR 1948</td>
+<td><input type="checkbox" id="k1239" value= "1239k.dat" name="kbox"/>HR 1239</td>
+<td><input type="checkbox" id="k2763" value= "2763k.dat" name="kbox"/>HR 2763</td>
+<td><input type="checkbox" id="k1543" value= "1543k.dat" name="kbox"/>HR 1543</td>
+<td><input type="checkbox" id="k2007" value= "2007k.dat" name="kbox"/>HR 2007</td>
+<td><input type="checkbox" id="k1318" value= "1318k.dat" name="kbox"/>HR 1318</td>
+<td><input type="checkbox" id="k114961" value= "114961k.dat" name="kbox"/>HD 114961</td>
+</tr>
+
+<tr>
+<td><input type="checkbox" id="k2456" value= "2456k.dat" name="kbox"/>HR 2456</td>
+<td><input type="checkbox" id="k1552" value= "1552k.dat" name="kbox"/>HR 1552</td>
+<td><input type="checkbox" id="k3131" value= "3131k.dat" name="kbox"/>HR 3131</td>
+<td><input type="checkbox" id="k1865" value= "1865k.dat" name="kbox"/>HR 1865</td>
+<td><input type="checkbox" id="k2473" value= "2473k.dat" name="kbox"/>HR 2473</td>
+<td><input type="checkbox" id="k2227" value= "2227k.dat" name="kbox"/>HR 2227</td>
+<td><input type="checkbox" id="k1155" value= "1155k.dat" name="kbox"/>HR 1155</td>
+</tr>
+
+<tr>
+<td></td>
+<td><input type="checkbox" id="k1790" value= "1790k.dat" name="kbox"/>HR 1790</td>
+<td><input type="checkbox" id="k4033" value= "4033k.dat" name="kbox"/>HR 4033</td>
+<td><input type="checkbox" id="k1983" value= "1983k.dat" name="kbox"/>HR 1983</td>
+<td><input type="checkbox" id="k2970" value= "2970k.dat" name="kbox"/>HR 2970</td>
+<td><input type="checkbox" id="k2701" value= "2701k.dat" name="kbox"/>HR 2701</td>
+<td><input type="checkbox" id="k2508" value= "2508k.dat" name="kbox"/>HR 2508</td>
+</tr>
+
+<tr>
+<td></td>
+<td><input type="checkbox" id="k1791" value= "1791k.dat" name="kbox"/>HR 1791</td>
+<td><input type="checkbox" id="k403" value= "403k.dat" name="kbox"/>HR 403</td>
+<td><input type="checkbox" id="k2085" value= "2085k.dat" name="kbox"/>HR 2085</td>
+<td><input type="checkbox" id="k3045" value= "3045k.dat" name="kbox"/>HR 3045</td>
+<td><input type="checkbox" id="k2993" value= "2993k.dat" name="kbox"/>HR 2993</td>
+<td><input type="checkbox" id="k2902" value= "2902k.dat" name="kbox"/>HR 2902</td>
+</tr>
+</table>
+</center>
+
+<table border="0" cellspacing="0" cellpadding="7">
+<tr><td width = "40%" align= "center" rowspan="2"><h2>H-Band</h2></td>
+<td width = "*" colspan="3">Enter wavelength range 15550 &amp; 17300(angstrom):</td>
+</tr>
+<tr>
+<td><input type="text" id="hstart" value="15550.0" onBlur="validate('hstart',15550,17300)"></td>
+<td>to</td>
+<td><input type="text" id="hend" value="17300.0" onBlur="validate('hend',15550,17300)"></td>
+</tr>
+</table>
+<center>
+<table border="2" cellspacing="0" cellpadding="5" class="ftable">
+<tr>
+<th>O type</th>
+<th>B type</th>
+<th>A type</th>
+<th>F type</th>
+<th>G type</th>
+<th>K type</th>
+<th>M type</th>
+</tr>
+<tr>
+<td><input type="checkbox" id="h3165" value= "3165H.dat" name="hbox"/>HR 3165</td>
+<td><input type="checkbox" id="h1903" value= "1903H.dat" name="hbox"/>HR 1903</td>
+<td><input type="checkbox" id="h3975" value= "3975H.dat" name="hbox"/>HR 3975</td>
+<td><input type="checkbox" id="h382" value= "382H.dat" name="hbox"/>HR 382</td>
+<td><input type="checkbox" id="h4375" value= "4375H.dat" name="hbox"/>HR 4375</td>
+<td><input type="checkbox" id="h1318" value= "1318H.dat" name="hbox"/>HR 1318</td>
+<td><input type="checkbox" id="h3718" value= "3718H.dat" name="hbox"/>HR 3718</td>
+</tr>
+
+<tr>
+<td><input type="checkbox" id="h2456" value= "2456H.dat" name="hbox"/>HR 2456</td>
+<td><input type="checkbox" id="h5056" value= "5056H.dat" name="hbox"/>HR 5056</td>
+<td><input type="checkbox" id="h5291" value= "5291H.dat" name="hbox"/>HR 5291</td>
+<td><input type="checkbox" id="h1865" value= "1865H.dat" name="hbox"/>HR 1865</td>
+<td><input type="checkbox" id="h4785" value= "4785H.dat" name="hbox"/>HR 4785</td>
+<td><input type="checkbox" id="h2227" value= "2227H.dat" name="hbox"/>HR 2227</td>
+<td><input type="checkbox" id="h4092" value= "4092H.dat" name="hbox"/>HR 4092</td>
+</tr>
+
+<tr>
+<td><input type="checkbox" id="h1879" value= "1879H.dat" name="hbox"/>HR 1879</td>
+<td><input type="checkbox" id="h6084" value= "6084H.dat" name="hbox"/>HR 6084</td>
+<td><input type="checkbox" id="h3131" value= "3131H.dat" name="hbox"/>HR 3131</td>
+<td><input type="checkbox" id="h4031" value= "4031H.dat" name="hbox"/>HR 4031</td>
+<td><input type="checkbox" id="h4883" value= "4883H.dat" name="hbox"/>HR 4883</td>
+<td><input type="checkbox" id="h2701" value= "2701H.dat" name="hbox"/>HR 2701</td>
+<td><input type="checkbox" id="h2508" value= "2508H.dat" name="hbox"/>HR 2508</td>
+</tr>
+
+<tr>
+<td><input type="checkbox" id="h1948" value= "1948H.dat" name="hbox"/>HR 1948</td>
+<td><input type="checkbox" id="h1552" value= "1552H.dat" name="hbox"/>HR 1552</td>
+<td><input type="checkbox" id="h4033" value= "4033H.dat" name="hbox"/>HR 4033</td>
+<td><input type="checkbox" id="h4090" value= "4090H.dat" name="hbox"/>HR 4090</td>
+<td><input type="checkbox" id="h3175" value= "3175H.dat" name="hbox"/>HR 3175</td>
+<td><input type="checkbox" id="h2993" value= "2993H.dat" name="hbox"/>HR 2993</td>
+<td><input type="checkbox" id="h3357" value= "3357H.dat" name="hbox"/>HR 3357</td>
+</tr>
+
+</table>
+</center>
+
+</form>
+
+<br/><br/><br/>
+<center>
+<input class="dbutton" type="button" id = "dbutton" value = "Download" onClick="requestHandler()"/>
+</center>
+
+<center>
+<div id="out"></div>
+</center>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

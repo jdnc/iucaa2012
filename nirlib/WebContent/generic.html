@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<style type="text/css">
+body {background: #FFFFFF; margin: 0; padding: 0; font-size: 12px;
+    color: #000000; font-family: Verdana, sans-serif, arial, helvetica;
+    line-height: 1.4}
+.ftable {
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+width:100%;
+border-collapse:collapse;
+}
+.ftable td, .ftable th {
+font-size:1.1em;
+border:1px solid #000000;
+padding:3px 7px 2px 7px;
+}
+.ftable th{
+font-size:1.4em;
+text-align:left;
+padding-top:5px;
+padding-bottom:4px;
+background-color:#0099FF;
+color:#ffffff;
+}
+.ftable tr.alt td{
+color:#000000;
+background-color:#C0C064;
+
+}
+.dbutton{
+ background: #A33033;
+  border: 2px solid #E7E7E7;
+  height: 38px;
+  width: 125px;
+  margin: 10px 0 0 10px;
+  overflow: hidden;
+ 
+  text-align: center;
+  line-height: 38px;
+  display: block;
+   font: 18px/1.5 Helvetica, Arial, sans-serif;
+  color: #ffffff;
+  
+}
+#main {
+        margin-left:10.2em;
+        margin-right:10.2em;
+        padding-left:1em;
+        padding-right:1em;
+        background-image:url(/nirlib/mountains-back.jpg);
+        
+}
+.header {
+	background-image:url(/nirlib/header.jpg);
+	background-color:#0071BD;
+	color:#FFFFFF;
+}
+.wrapper{
+	position : absolute;
+	margin-left:10.2em;
+    margin-right:10.2em;
+    padding-left:1em;
+    padding-right:1em;
+
+}
+.leftblock{
+	 background-image:url(/nirlib/bg.jpg);
+	 position:relative;
+	 margin-left:10.2em;
+     margin-right:10.2em;
+     margin-bottom : 2em;
+     padding-left:1em;
+     padding-right:1em;
+    height: 200px;
+    border: 1px solid gray;
+}
+.rightblock{
+	background-image:url(/nirlib/bg.jpg);
+	positon : relative;
+    margin-left:10.2em;
+    margin-right:10.2em;
+    padding-left:1em;
+    padding-right:1em;
+    border: 1px solid gray;
+}
+.redBackground
+{
+    background-color: #F4FA58;
+}
+#loader{
+	height:11px;
+	
+}	
+#navbar {
+	float:right;
+	margin-right : 6.2em;
+	margin: 0;
+	padding: 0;
+	height: 10em; }
+#navbar li {
+	list-style: none;
+	float: left;
+ }
+#navbar li a {
+	display: block;
+	padding: 3px 8px;
+	background-color: #5e8ce9;
+	color: #fff;
+	text-decoration: none; }
+#navbar li ul {
+	display: none; 
+	width: 10em; /* Width to help Opera out */
+	background-color: #69f;}
+#navbar li:hover ul {
+	display: block;
+	position: absolute;
+	margin: 0;
+	padding: 0; }
+#navbar li:hover li {
+	float: none; }
+#navbar li:hover li a {
+	background-color: #69f;
+	border-bottom: 1px solid #fff;
+	color: #000; }
+#navbar li li a:hover {
+	background-color: #8db3ff; }
+</style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+ <script type="text/javascript" src="/nirlib/genericUserForm.js" >
+</script>
+<script type="text/javascript"  src ="/nirlib/generic.js"> 
+</script>
+<script type="text/javascript" >
+ // hide it initially
+ $('document').ajaxStart(function() {console.log("in spinner");
+        $('#loader').innerHTML = "<img src='/nirlib/loading.gif' id= 'loaderimage' >";
+    }).ajaxStop(function() {
+        $("#loader").innerHTML = "";
+    });
+
+
+
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>NIR-LIB VO-I Interface</title>
+</head>
+<body id="main" >
+<ul id="navbar">
+	<li><a href="#">VO Tools</a><ul>
+		<li><a href="http://aladin.u-strasbg.fr/java/nph-aladin.pl" target="_blank">Aladin</a></li>
+		<li><a href="#">SPLAT</a></li>
+		<li><a href="http://esavo.esac.esa.int/vospec/" target="_blank">VOspec</a></li>
+		<li><a href="http://vo.iucaa.ernet.in:9090/VOStat/" target="_blank">VOStat</a></li>
+		
+		
+		
+		</ul>
+	</li>
+</ul>
+<div class ="header">
+<center>
+<h1>Near Infra-red Stellar Spectral Library </h1>
+</center>
+
+
+</div>
+<p id="intro" style="color:#ffffff;font:12px;"> Welcome! This site provides an interface for easily searching the Near Infra-red Stellar Spectral Library data archive at IUCAA.
+The data archive may be accessed  <a href = "http://vo.iucaa.ernet.in/~voi/NIR_Header.html" target ="_blank"> here</a>
+</p>
+
+<div class="leftblock">
+
+<center>
+<h2>Refine Search</h2>
+<form>
+<input class = "dbutton" type="button" value="View all" id="vbutton" name="vb" onClick="document.getElementById('jstart').disabled=false;document.getElementById('jend').disabled=false;document.getElementById('kstart').disabled=false;document.getElementById('kend').disabled=false;document.getElementById('hstart').disabled=false;document.getElementById('hend').disabled=false;genericAsync()">
+</form>
+
+<form name="fform">
+<table>
+<tr><td><input type="radio" id="jbandf" name="bfilter" value="j" onclick="document.getElementById('jstart').disabled=false;document.getElementById('jend').disabled=false;document.getElementById('kstart').disabled=true;document.getElementById('kend').disabled=true;document.getElementById('hstart').disabled=true;document.getElementById('hend').disabled=true;asyncFilter('j')"/>J-Band</td><td><input type="radio" id="Kbandf" name="bfilter" value="k" onclick="document.getElementById('kstart').disabled=false;document.getElementById('kend').disabled=false;document.getElementById('jstart').disabled=true;document.getElementById('jend').disabled=true;document.getElementById('hstart').disabled=true;document.getElementById('hend').disabled=true;asyncFilter('k')"/>K-Band</td><td><input type="radio" id="hbandf" name="bfilter" value="h" onclick="document.getElementById('hstart').disabled=false;document.getElementById('hend').disabled=false;document.getElementById('jstart').disabled=true;document.getElementById('jend').disabled=true;document.getElementById('kstart').disabled=true;document.getElementById('kend').disabled=true;asyncFilter('H')"/>H-Band</td></tr>
+</table>
+</form>
+</center>
+<form method="post" name="sform" id="sid">
+<table border="0" cellspacing="0" cellpadding ="7">
+<tr><td width="20%" align="left">RA(hh:mm:ss)</td>
+<td width="20%" align="left"><input style="width:100px;" type="text" id="ra" name="ra" value="0:0:0.0"/></td>
+<td width="20%" align="left">DEC(hh:mm:ss)</td>
+<td width="20%" align="left"><input style="width:100px;" type="text" id="dec" name="dec" value="0:0:0.0"/></td>
+
+<td align="left" width="20%"><input type="button" value="Search" class="dbutton" id="sbutton" onClick="raDecHandler()"/></td>
+</table>
+</form>
+</div>
+<div class = "rightblock">
+<center><h2>Download data</h2></center>
+<form method="post" name="uform" id="uid">
+<center>
+<input type="checkbox" id= "vot" />Download in VOTable format
+<input type="checkbox" id= "ascii" />Download in ASCII format
+</center>
+<table border="0" cellspacing="0" cellpadding="7">
+<tr><td width = "40%" align= "center" rowspan="2"><h2>J-Band</h2></td>
+<td width = "*" colspan="3">Enter wavelength range between 11300 &amp; 13100(angstrom):</td>
+</tr>
+<tr>
+<td><input style="width:75px;" type="text" id="jstart" name="jsname" value="11300.0" onBlur="validate('jstart',11300,13100)"></td>
+<td>to</td>
+<td><input style="width:75px;" type="text" id="jend" value="13100.0" onBlur="validate('jend',11300,13100)"></td>
+</tr>
+</table>
+<table border="0" cellspacing="0" cellpadding="7">
+<tr><td width = "40%" align= "center" rowspan="2"><h2>K-Band</h2></td>
+<td width = "*" colspan="3">Enter wavelength range between 20800 &amp; 22400(angstrom):</td>
+</tr>
+<tr>
+<td><input style="width:75px;" type="text" id="kstart" value="20800.0" onBlur="validate('kstart',20800,22400)"></td>
+<td>to</td>
+<td><input style="width:75px;" type="text" id="kend" value="22400.0" onBlur="validate('kend',20800,22400)"></td>
+</tr>
+</table>
+<table border="0" cellspacing="0" cellpadding="7">
+<tr><td width = "40%" align= "center" rowspan="2"><h2>H-Band</h2></td>
+<td width = "*" colspan="3">Enter wavelength range between 15550 &amp; 17300(angstrom):</td>
+</tr>
+<tr>
+<td><input style="width:75px;" type="text" id="hstart" value="15550.0" onBlur="validate('hstart',15550,17300)"></td>
+<td>to</td>
+<td><input style="width:75px;" type="text" id="hend" value="17300.0" onBlur="validate('hend',15550,17300)"></td>
+</tr>
+</table>
+<center>
+<input class="dbutton" type="button" id = "dbutton" value = "Download" onClick="requestHandler()"/>
+
+
+<div id="loader"></div>
+</center>
+<div id="out"></div>
+<div id="db">
+</div>
+</form>
+
+
+</div>
+
+
+<br/><br/><br/>
+
+<script type="text/javascript">
+ $('input[type=checkbox]').each(function () {
+
+			                var checkbox = $(this);
+			                console.log(checkbox.attr('id'));
+			                // if the checkbox is already checked, colour its row
+			                CheckStatus(checkbox);
+
+			                //Every time a check-box status changes we 
+			                //want to re-evaluate the row colour
+			                checkbox.change(function () {
+			                	
+			                    CheckStatus(checkbox);
+			                });
+
+			            });
+
+</script>
+
+</body>
+</html>
