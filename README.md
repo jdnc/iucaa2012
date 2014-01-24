@@ -1,4 +1,3 @@
-
 Dynamic web application developed for Virtual Observatories - India at IUCAA, Pune during Summer 2012.
 
 Currently the repo has the Eclipse project that can be directly imported to your eclipse.
@@ -10,5 +9,5 @@ The exact functionalities are elaborated in **Project-Report.pdf**
 
 Browse the nirlib/ folder for the actual source code.
 
-* **nirlib/queryPackage/src** has the Java Servlets that talk with the backend DB
+* **nirlib/src/queryPackage/** has the Java Servlets that talk with the backend DB
 * **nirlib/WebContent/**  has all the HTML, JavaScript and AJAX code
